@@ -1,0 +1,19 @@
+camel:
+  springboot:
+    name: customer-service
+    main-run-controller: true
+  zipkin:
+    host-name: 127.0.0.1
+    port: 9410
+    server-service-mappings.direct*: consul-cust-reg
+    client-service-mappings.direct*: consul-cust-reg
+    server-service-mappings.route*: customer-service
+    client-service-mappings.route*: customer-service
+
+spring:
+  main:
+    sources: com.gykan.services.customer.CustomerRouter
+
+logging:
+  level:
+    org.apache.camel: DEBUG
